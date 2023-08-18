@@ -11,3 +11,13 @@ This website employs JavaScript canvas to provide a display of some of the most 
 
 - **Green:** Sorted Elements
  - Many sorting algorithms optimize their efficiency by placing elements in their appropriate positions early on. Various strategies exist to achieve this. Once an element is placed correctly, it turns green and is never compared again.
+ 
+### Sorting Algorithms to be Implemented
+- [ ] Selection Sort
+- [ ] Bubble Sort
+- [ ] Insertion Sort
+- [ ] Merge Sort
+- [ ] Quick Sort
+- [ ] Heap Sort
+- [ ] Shell Sort
+- [x] Bogo Sort
