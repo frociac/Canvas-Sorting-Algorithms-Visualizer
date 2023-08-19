@@ -9,10 +9,47 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <h1 id="title">Bogo Sort</h1>
-    <canvas id="canvas" width="800" height="400"></canvas>
+    <div id="container">
+      <div id="left">
+        <button class="choice-button" id="selection">Selection Sort</button>
+        <button class="choice-button" id="bubble">Bubble Sort</button>
+        <button class="choice-button" id="insertion">Insertion Sort</button>
+        <button class="choice-button" id="merge">Merge Sort</button>
+        <button class="choice-button" id="quick">Quick Sort</button>
+        <button class="choice-button" id="heap">Heap Sort</button>
+        <button class="choice-button" id="shell">Shell Sort</button>
+        <button class="choice-button" id="bogo">Bogo Sort</button>
+        <button class="choice-button" id="random">Random Sort</button>        
+      </div>
+      <div id="center">
+        <canvas id="canvas" width="800" height="400"></canvas>
+        <div id="options-div">
+          <div id="start-stop">
+            <button id="start" class="choice-button clicked disabled">Start Sorting!</button>
+            <button id="stop" class="choice-button disabled">Stop</button>
+          </div>
+          <div>
+            <form id="input">
+              <div id="elements-input">
+                <input type="text" placeholder="300 150 200 100 50" id="elements" name="elements"> 
+                <label for="elements">List of Heights (range 0-400 space separated or leave blank for random)</label>
+              </div>
+              <div id="speed-input">
+                <input type="number" placeholder="250 ms by default" id="speed" name="speed">
+                <label for="speed">Step Speed (in ms):</label>
+              </div>
+            </form>
+          </div>
+          <div id="slider-container">
+            <input type="range" min="1" max="100" value="5" class="slider" id="size">
+            <p id="slider-value">Array Size (overwritten by heights field): <span id="value-display">5</span></p>
+          </div>
+        </div>
+      </div>
+      <div id="right">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae et ad quam laboriosam, magnam maxime fuga explicabo praesentium fugit vel sunt! Alias odio dignissimos deleniti ad asperiores minima nulla ratione!Lorem Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci nihil consequatur voluptates ipsum voluptatibus ratione! Explicabo placeat accusantium tenetur expedita, doloremque excepturi veritatis itaque, maiores ipsa illo ratione beatae sed? Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate laudantium, reprehenderit modi voluptatem autem accusamus omnis dolores nesciunt esse doloremque reiciendis corporis dolorum nostrum iusto quidem totam facilis vitae molestias.</div>
+    </div>
     <script src="index.js"></script>
-    <button id="sort" onclick="sort()">Sort</button>
+    <script src="utils.js"></script>
   </body>
 
 </html>
