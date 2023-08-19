@@ -47,6 +47,8 @@ const startSort = () => {
       bubbleSort();
       break;
     case "insertion":
+      insertionSort();
+      break;
     case "merge":
     case "quick":
     case "heap":
@@ -134,7 +136,7 @@ const compare = async (i1, i2) => {
 
 const isSorted = async () => {
   for (let i = 1; i < ArrayData.array.length; i++) {
-    if (await compare(i, i-1) == -1) {
+    if (await compare(i, i-1) < 0) {
       return false;
     }
   }
@@ -181,7 +183,7 @@ async function selectionSort() {
     let minIndex = i;
     for (let j = i+1; j < ArrayData.array.length; j++) {
       ArrayData.comparePoints = [minIndex];
-      await draw()
+      await draw();
       if (await compare(minIndex, j) > 0) minIndex = j;
     }
     //array[minIndex] > array[j]
@@ -198,6 +200,22 @@ async function bubbleSort() {
       if (await compare(j, j+1) > 0) await swap(j, j+1);
     }
     ArrayData.sortedPoints.push(ArrayData.array.length - i - 1);
+  }
+  await draw();
+  console.log(ArrayData.array);
+}
+
+async function insertionSort() {
+  console.log("over heree ");
+  let i;
+  let j;
+  for (i = 1; i < ArrayData.array.length - 1; i++) {
+    j = i;
+    while (j > 0 && await compare(j - 1, j) > 0) {
+      await swap(j, j - 1);
+      if (i == ArrayData.array.length - 2) ArrayData.sortedPoints.push(j)
+      j--;
+    }
   }
   await draw();
   console.log(ArrayData.array);
