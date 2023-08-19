@@ -44,6 +44,8 @@ const startSort = () => {
       selectionSort();
       break;
     case "bubble":
+      bubbleSort();
+      break;
     case "insertion":
     case "merge":
     case "quick":
@@ -169,6 +171,7 @@ async function bogoSort() {
     ArrayData.array = await shuffle();
     await draw(ArrayData.array);
   }
+  // creates and stores an array from 0 to ArrayData.array.length
   ArrayData.sortedPoints = Array.from(Array(ArrayData.array.length).keys())
   await draw();
   console.log(ArrayData.array);
@@ -186,6 +189,16 @@ async function selectionSort() {
     ArrayData.sortedPoints.push(i);
   }
   ArrayData.sortedPoints.push(ArrayData.array.length -1);
+  await draw();
+  console.log(ArrayData.array);
+}
+async function bubbleSort() {
+  for (let i = 0; i < ArrayData.array.length; i++) {
+    for (let j = 0; j < ArrayData.array.length - i - 1; j++) {
+      if (await compare(j, j+1) > 0) await swap(j, j+1);
+    }
+    ArrayData.sortedPoints.push(ArrayData.array.length - i - 1);
+  }
   await draw();
   console.log(ArrayData.array);
 }
