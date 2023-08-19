@@ -9,7 +9,7 @@ This website employs JavaScript canvas to provide a display of some of the most 
 - **Yellow:** Comparisons between elements
   - In the sorting process, comparisons with other elements are important to determine the correct arrangement of items.
 - **Blue:** Elements to be Swapped
-  - Often in sorting algorithms, we want to rearrange elements into a more desierable position. Purple indicates elements that are currently being moved or swapped.
+  - Often in sorting algorithms, we want to rearrange elements into a more desierable position. Blue indicates elements that are currently being moved or swapped.
 - **Green:** Sorted Elements
   - Many sorting algorithms optimize their efficiency by placing elements in their appropriate positions early on. Various strategies exist to achieve this. Once an element is placed correctly, it turns green and is never compared again.
  
