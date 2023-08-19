@@ -1,6 +1,20 @@
+
+
 document.addEventListener("DOMContentLoaded", () => {
   // starts canvas in utils.js and stores context
   setUpCanvas();
+  /** fullscreen handler */
+  const canvas = document.getElementById("canvas");
+  document.addEventListener("keydown", (event) => {
+    console.log(event.key);
+    if (event.key === "f") {
+      console.log("HERE");
+      if (canvas.requestFullscreen) canvas.requestFullscreen();
+      else if (canvas.webkitRequestFullscreen) canvas.webkitRequestFullscreen();
+      else if (canvas.msRequestFullscreen) canvas.msRequestFullscreen();
+    }
+  });
+  /**end of fullscreen handler */
 
   /** slider handler */
   const slider = document.getElementById("size");
