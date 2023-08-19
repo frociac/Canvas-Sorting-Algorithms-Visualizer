@@ -26,7 +26,7 @@ This website employs JavaScript canvas to provide a display of some of the most 
 ### TODO
 - [ ] Implement other sorting algorithms (and add to the list)
 - [ ] Asynchronous Stop
-  - Multiple bugs if you attempt to prematurely end of sort
+  - Multiple bugs if you attempt to prematurely end sort
   - One option is to just force a refresh to the page. 
 - [ ] Detailed Explanation on each algorithm
   - Lorem ipsum placeholder on the right
