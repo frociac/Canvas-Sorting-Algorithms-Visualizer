@@ -1,19 +1,146 @@
-body {
-  background-color: rgb(234, 182, 115);
-}
-#title {
-  text-align: center;
-  font-size: 40px;
-  font-family:  Arial
+:root {
+  --red: #f94a4a;
+  --green: #4CAF50;
+  --disabledRed: #e89999;
+  --disabledGreen: #97a997;
+  --disabledPurple: rgb(116, 86, 116);
 }
 
+body {
+  background-color: rgb(61, 65, 64);
+  margin: 0; /* Reset default margin */
+}
+
+#container {
+  display: flex;
+  height: 100vh;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  text-align: center;
+  gap: 10px;
+}
+
+#left {
+  display: flex;
+  flex: 2;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 1px;
+  gap: 3vh;
+}
+
+#center {
+  flex: 8;
+  display: flex;
+  flex-direction: column;
+}
+
+#right {
+  flex: 2;
+  font-size: 23px;
+  font-family: 'Courier New', Courier, monospace;
+  color: white;
+}
+
+#random {
+  background-color: purple;
+}
+
+#options-div {
+  display: flex;
+  flex-direction: column;
+}
+
+#start-stop {
+  display: flex;
+}
+
+#input {
+  color: white;
+  display: flex;
+  justify-content: space-around;
+}
+
+#elements-input {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 5px;
+}
+
+#speed-input {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 5px;
+}
+
+#slider-container {
+  width: 100%;
+  color: white;
+}
+
+.slider {
+  appearance: none;
+  width: 100%;
+  height: 25px;
+  opacity: 0.7;
+  background: #04AA6D; 
+  cursor: pointer;
+  transition: opacity;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.choice-button {
+  width: 100%;
+  background-color: var(--red);
+  border: 1px solid #000;
+  text-align: center;
+  color: white;
+  font-size: 3vh;
+  padding: 5px 5px;
+  cursor: pointer;
+}
+
+.clicked {
+  background-color: var(--green);
+}
+
+.disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.disabled.choice-button {
+  background-color: var(--disabledRed);
+}
+
+.disabled#random{
+  background-color: var(--disabledPurple);
+}
+
+.disabled.choice-button.clicked {
+  background-color: var(--disabledGreen);
+}
+
+#header-container {
+  display: inline;
+}
+
+#title {
+  font-size: 40px;
+  font-family: Arial;
+  text-align: center;
+}
+
+
 #canvas {
-  padding-left: 0;
-  padding-right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  border: 2px solid #000;
+  border: 1px solid #181818;
 }
 
 #sort {
