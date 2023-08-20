@@ -16,7 +16,7 @@ This website employs JavaScript canvas to provide a display of some of the most 
 ### Sorting Algorithms to be Implemented
 - [x] Selection Sort
 - [x] Bubble Sort
-- [z] Insertion Sort
+- [x] Insertion Sort
 - [ ] Merge Sort
 - [ ] Quick Sort
 - [ ] Heap Sort
