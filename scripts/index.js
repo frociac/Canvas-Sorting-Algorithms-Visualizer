@@ -1,14 +1,11 @@
-
-
 document.addEventListener("DOMContentLoaded", () => {
   // starts canvas in utils.js and stores context
-  setUpCanvas();
+  CanvasManager.setUpCanvas();
+
   /** fullscreen handler */
   const canvas = document.getElementById("canvas");
   document.addEventListener("keydown", (event) => {
-    console.log(event.key);
     if (event.key === "f") {
-      console.log("HERE");
       if (canvas.requestFullscreen) canvas.requestFullscreen();
       else if (canvas.webkitRequestFullscreen) canvas.webkitRequestFullscreen();
       else if (canvas.msRequestFullscreen) canvas.msRequestFullscreen();
@@ -17,31 +14,31 @@ document.addEventListener("DOMContentLoaded", () => {
   /**end of fullscreen handler */
 
   /** slider handler */
-  const slider = document.getElementById("size");
+  const slider = document.getElementById("speed");
   const valueDisplay = document.getElementById("value-display");
 
   // update the value display when the slider value changes
   slider.addEventListener("input", () => {
     valueDisplay.textContent = slider.value;
-    setSize(slider.value);
+    CanvasManager.stepSpeed = slider.value;
   });
   /** end of slider handler */
 
   /** sorting buttons handler */
   const buttonContainer = document.getElementById("left");
-  const startButton = document.getElementById("start");
-  const stopButton = document.getElementById("stop");
+  const controlButton = document.getElementById("start-end");
+  const pauseButton = document.getElementById("pause");
   // adds an event listener to the div containing buttons
   buttonContainer.addEventListener("click", (event) => {
     // ensures the button was pressed and not the div
     let target = event.target;
     if (target.classList.contains("choice-button")) {
-      startButton.classList.remove("disabled");
+      controlButton.classList.remove("disabled");
       if (target.id == "random") {
+        Options.random_click_count++;
         target = buttonContainer.children[Math.floor(Math.random() * (buttonContainer.children.length -1))];
-        console.log(target);
       }
-      sortSelect(target.id);
+      Options.selectedAlgorithm = target.id;
       target.classList.add("clicked");
       // removes clicked class from previously clicked button (makes all other buttons turn red)
       for (let i = 0; i < buttonContainer.children.length; i++) {
@@ -56,26 +53,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /** input handler */
   const elementsInput = document.getElementById("elements");
-  const speedInput = document.getElementById("speed");
-  startButton.addEventListener("click", (event) => {
-    verifyArrayInput(elementsInput.value)
-    setSpeed(speedInput.value);
-    startButton.classList.add("disabled");
-    stopButton.classList.remove("disabled");
-    for (let i = 0; i < buttonContainer.children.length; i++) {
-      let childButton = buttonContainer.children[i];
-      childButton.classList.add("disabled");
-    }
-    startSort();
+  const sizeInput = document.getElementById("size");
+  controlButton.addEventListener("click", (event) => {
+    if (Options.has_started) {
+      Options.has_started = false;
+      ArrayData.clearAll();
+      // CanvasManager.stop();
+      controlButton.classList.add("clicked");
+      controlButton.textContent = "Start Sort";
+      pauseButton.classList.add("disabled");
+      for (let i = 0; i < buttonContainer.children.length; i++) {
+        let childButton = buttonContainer.children[i];
+        childButton.classList.remove("disabled");
+      }
+    } else {
+      Options.has_started = true;
+      Options.user_array_size = sizeInput.value; 
+      ArrayData.array = elementsInput.value;
+      controlButton.classList.remove("clicked");
+      controlButton.textContent = "Stop Sort";
+      pauseButton.classList.remove("disabled");
+      for (let i = 0; i < buttonContainer.children.length; i++) {
+        let childButton = buttonContainer.children[i];
+        childButton.classList.add("disabled");
+      }
+      Utils.startSort();
+    };
   })
-  stopButton.addEventListener("click", (event) => {
-    setUpCanvas();
-    startButton.classList.remove("disabled");
-    stopButton.classList.add("disabled");
-    for (let i = 0; i < buttonContainer.children.length; i++) {
-      let childButton = buttonContainer.children[i];
-      childButton.classList.remove("disabled");
-    }
+  pauseButton.addEventListener("click", (event) => {
+    Options.is_paused = true;
   })
   /** end of input handler */
 });
+
+
