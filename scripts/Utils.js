@@ -100,6 +100,7 @@ static startSort() {
    * @returns {Promise<void>} A Promise that resolves after the swap.
    */
   static async swap(i1, i2) {
+    if (i1 == i2) return;
     ArrayData.swapPositions = [i1, i2];
     const temp = ArrayData.array[i1];
     ArrayData.array[i1] = ArrayData.array[i2];
