@@ -4,6 +4,8 @@
   --disabledRed: #e89999;
   --disabledGreen: #97a997;
   --disabledPurple: rgb(116, 86, 116);
+  --pause: rgb(55, 30, 30);
+  --disabledPause: rgb(61, 52, 52);
 }
 
 body {
@@ -53,7 +55,7 @@ body {
   flex-direction: column;
 }
 
-#start-stop {
+#start-pause {
   display: flex;
 }
 
@@ -70,7 +72,7 @@ body {
   padding: 5px;
 }
 
-#speed-input {
+#size-input {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -120,12 +122,21 @@ body {
   background-color: var(--disabledRed);
 }
 
-.disabled#random{
+.disabled#random {
   background-color: var(--disabledPurple);
 }
 
+
 .disabled.choice-button.clicked {
   background-color: var(--disabledGreen);
+}
+
+#pause {
+  background-color: var(--pause); 
+}
+
+#pause.disabled.choice-button {
+  background-color: var(--disabledPause)
 }
 
 #header-container {

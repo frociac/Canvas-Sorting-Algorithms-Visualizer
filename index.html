@@ -24,32 +24,36 @@
       <div id="center">
         <canvas id="canvas" width="800" height="400"></canvas>
         <div id="options-div">
-          <div id="start-stop">
-            <button id="start" class="choice-button clicked disabled">Start Sorting!</button>
-            <button id="stop" class="choice-button disabled">Stop</button>
+          <div id="start-pause">
+            <button id="start-end" class="choice-button clicked disabled">Start Sort</button>
+            <button id="pause" class="choice-button disabled">Pause</button>
           </div>
           <div>
             <form id="input">
               <div id="elements-input">
                 <input type="text" placeholder="300 150 200 100 50" id="elements" name="elements"> 
-                <label for="elements">List of Heights (range 0-400 space separated or leave blank for random)</label>
+                <label for="elements">List of Heights (space separated or leave blank for random)</label>
               </div>
-              <div id="speed-input">
-                <input type="number" placeholder="250 ms by default" id="speed" name="speed">
-                <label for="speed">Step Speed (in ms):</label>
+              <div id="size-input">
+                <input type="number" step="1" placeholder="5" id="size" name="size">
+                <label for="size">Number of Elements to be sorted</label>
               </div>
             </form>
           </div>
           <div id="slider-container">
-            <input type="range" min="1" max="150" value="5" class="slider" id="size">
-            <p id="slider-value">Array Size (overwritten by heights field): <span id="value-display">5</span></p>
+            <input type="range" min="0" max="1000" value="250" class="slider" id="speed">
+            <p id="slider-value">Step speed (ms): <span id="value-display">250</span></p>
           </div>
         </div>
       </div>
       <div id="right">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae et ad quam laboriosam, magnam maxime fuga explicabo praesentium fugit vel sunt! Alias odio dignissimos deleniti ad asperiores minima nulla ratione!Lorem Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci nihil consequatur voluptates ipsum voluptatibus ratione! Explicabo placeat accusantium tenetur expedita, doloremque excepturi veritatis itaque, maiores ipsa illo ratione beatae sed? Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate laudantium, reprehenderit modi voluptatem autem accusamus omnis dolores nesciunt esse doloremque reiciendis corporis dolorum nostrum iusto quidem totam facilis vitae molestias.</div>
     </div>
-    <script src="index.js"></script>
-    <script src="utils.js"></script>
+    <script src="scripts/index.js"></script>
+    <script src="scripts/ArrayData.js"></script>
+    <script src="scripts/CanvasManager.js"></script>
+    <script src="scripts/Algorithms.js"></script>
+    <script src="scripts/Utils.js"></script>
+    <script src="scripts/Options.js"></script>
   </body>
 
 </html>
