@@ -3,80 +3,6 @@
  */
 class Utils {
 
-/**
- * Start the sorting process based on the selected algorithm.
- */
-static startSort() {
-  switch (Options.selectedAlgorithm) {
-    /**
-     * Selection sort algorithm.
-     * @case "selection"
-     */
-    case "selection":
-      Algorithms.selectionSort();
-      break;
-    
-    /**
-     * Bubble sort algorithm.
-     * @case "bubble"
-     */
-    case "bubble":
-      Algorithms.bubbleSort();
-      break;
-
-    /**
-     * Insertion sort algorithm.
-     * @case "insertion"
-     */
-    case "insertion":
-      Algorithms.insertionSort();
-      break;
-
-    /**
-     * Merge sort algorithm.
-     * @case "merge"
-     */
-    case "merge":
-      Algorithms.mergeSort();
-      break;
-
-    /**
-     * Quick sort algorithm.
-     * @case "quick"
-     */
-    case "quick":
-      Algorithms.quickSort();
-      break;
-
-    /**
-     * Heap sort algorithm.
-     * @case "heap"
-     */
-    case "heap":
-      Algorithms.heapSort();
-      break;
-
-    /**
-     * Shell sort algorithm.
-     * @case "shell"
-     */
-    case "shell":
-      Algorithms.shellSort();
-      break;
-
-    /**
-     * Bogo sort algorithm.
-     * @case "bogo"
-     */
-    case "bogo":
-      Algorithms.bogoSort();
-      break;
-
-    default:
-      console.warn("No valid algorithm selected.");
-  }
-}
-
   /**
    * Generates a random array of the given size containing float numbers.
    * @param {number} size - The size of the array to generate.
@@ -85,25 +11,26 @@ static startSort() {
    * @returns {number[]} The generated random array.
    */
   static generateRandomArray(size) {
-    const array = [];
+    const arr = [];
     for (let i = 0; i < size; i++) {
-      const element = Math.random() * CanvasManager.height;
-      array.push(element);
+      const element = parseFloat((Math.random() * CanvasManager.height).toFixed(2));
+      arr.push(element);
     }
-    return array;
+    console.log(arr);
+    return arr;
   }
 
 /**
  * Normalizes the array elements to fit within the canvas height.
  * @param {number[]} arr - The array of numbers to normalize.
- * @returns {number[]} The normalized array.
+ * @returns {number} scaling factor
  * @public
  */
-static normalizeArrayToCanvas(arr) {
+static setNormalizeScale() {
   // Calculate the scaling factor based on the canvas height and the largest value in the array.
-  const scale = CanvasManager.height / this.#findLargestNumber(arr);
-  // returns a new array with normalized values using the calculated scale.
-  return arr.map(element => element * scale);
+  const scale = CanvasManager.height / this.#findLargestNumber(ArrayData.array);
+  Options.normalize_scale = scale;
+  return scale;
 }
 
 /**
@@ -128,12 +55,12 @@ static #findLargestNumber(arr) {
    */
   static async swap(i1, i2) {
     if (i1 == i2) return;
-    ArrayData.swapPositions = [i1, i2];
+    CanvasManager.swapPositions = [i1, i2];
     const temp = ArrayData.array[i1];
     ArrayData.array[i1] = ArrayData.array[i2];
     ArrayData.array[i2] = temp;
     await CanvasManager.draw();
-    ArrayData.swapPositions = [];
+    CanvasManager.swapPositions = [];
   }
 
   /**
@@ -143,9 +70,9 @@ static #findLargestNumber(arr) {
    * @returns {Promise<number>} The comparison result: -1, 0, or 1.
    */
   static async compare(i1, i2) {
-    ArrayData.comparePositions = [i1, i2];
+    CanvasManager.comparePositions = [i1, i2];
     await CanvasManager.draw();
-    ArrayData.comparePositions = [];
+    CanvasManager.comparePositions = [];
     if (ArrayData.array[i2] > ArrayData.array[i1]) return -1;
     else if (ArrayData.array[i2] === ArrayData.array[i1]) return 0;
     else return 1;
@@ -177,6 +104,16 @@ static #findLargestNumber(arr) {
       ArrayData.array[i] = t;
     }
     return ArrayData.array;
+  }
+
+  /**
+   * Generates a ranged array of integers.
+   * @param {number} start - The starting value of the range.
+   * @param {number} end - The ending value of the range (inclusive).
+   * @returns {number[]} The generated ranged array.
+   */
+  static generateRangedArray(start, end) {
+    return Array.from({ length: end - start + 1 }, (_, index) => start + index);
   }
 
   /**

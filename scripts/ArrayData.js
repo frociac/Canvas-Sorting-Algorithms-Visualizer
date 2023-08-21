@@ -1,30 +1,16 @@
 /**
- * A class for managing array data and various positions.
+ * A class for managing array data
  */
 class ArrayData {
   static #array = [];
   static #arraySize = 5;
-  static #comparePositions = [];
-  static #swapPositions = [];
-  static #correctPositions = [];
 
   /**
-   * Clears all data fields.
-   * @private
-   */
-  static #unsetAll() {
-    this.#array = [];
-    this.#comparePositions = [];
-    this.#swapPositions = [];
-    this.#correctPositions = [];
-  }
-
-  /**
-   * Clears the array and positions.
+   * Clears the array.
    * @public
    */
-  static clearAll() {
-    this.#unsetAll();
+  static clearArray() {
+    this.#array = [];
   }
 
   /**
@@ -45,16 +31,17 @@ class ArrayData {
   static set array(newArray) {
     if (typeof newArray === 'string') {
       if (this.#verifyArrayInput(newArray)) {
-        this.#array = Utils.normalizeArrayToCanvas(newArray.split(" ").map(Number));
+        this.#array = newArray.split(" ").map(Number);
         this.#arraySize = this.#array.length;
       } else {
-        this.#array = Utils.normalizeArrayToCanvas(Utils.generateRandomArray(Options.user_array_size));
+        this.#array = Utils.generateRandomArray(Options.user_array_size);
         this.#arraySize = Options.user_array_size;
       }
     } else {
       this.#array = newArray;
       this.#arraySize = newArray.length;
     }
+    Utils.setNormalizeScale();
   }
 
   /**
@@ -74,120 +61,5 @@ class ArrayData {
    */
   static get arraySize() {
     return this.#arraySize;
-  }
-
-  /**
-   * Gets the comparison positions.
-   * @returns {number[]} The comparison positions.
-   * @public
-   */
-  static get comparePositions() {
-    return this.#comparePositions;
-  }
-  /**
-   * Gets the swap positions.
-   * @returns {number[]} The swap positions.
-   * @public
-   */
-  static get swapPositions() {
-    return this.#swapPositions;
-  }
-  /**
-   * Gets the correct positions.
-   * @returns {number[]} The correct positions.
-   * @public
-   */
-  static get correctPositions() {
-    return this.#correctPositions;
-  }
-
-  /**
-   * Adds comparison positions.
-   * @param {number[]} newPositions - The new comparison positions to add.
-   * @public
-   */
-  static addComparePositions(newPositions) {
-    if (this.#isValidIntArray(newPositions)) {
-      this.#comparePositions.push(...newPositions);
-    } else {
-      console.error('Invalid input for comparePositions. Expecting an array of integers.');
-    }
-  }
-
-  /**
-   * Adds swapping positions.
-   * @param {number[]} newPositions - The new swapping positions to add.
-   * @public
-   */
-  static addSwapPositions(newPositions) {
-    if (this.#isValidIntArray(newPositions)) {
-      this.#swapPositions.push(...newPositions);
-    } else {
-      console.error('Invalid input for swapPositions. Expecting an array of integers.');
-    }
-  }
-
-  /**
-   * Adds correct positions.
-   * @param {number[]} newPositions - The new correct positions to add.
-   * @public
-   */
-  static addCorrectPositions(newPositions) {
-    if (this.#isValidIntArray(newPositions)) {
-      this.#correctPositions.push(...newPositions);
-    } else {
-      console.error('Invalid input for correctPositions. Expecting an array of integers.');
-    }
-  }
-  /**
-   * Sets the comparison positions.
-   * @param {number[]} newPositions - The new comparison positions to set.
-   * @public
-   */
-  static set comparePositions(newPositions) {
-    if (this.#isValidIntArray(newPositions)) {
-      this.#comparePositions = newPositions;
-    } else {
-      console.error('Invalid input for comparePositions. Expecting an array of integers.');
-    }
-  }
-
-  /**
-   * Sets the swapping positions.
-   * @param {number[]} newPositions - The new swapping positions to set.
-   * @public
-   */
-  static set swapPositions(newPositions) {
-    if (this.#isValidIntArray(newPositions)) {
-      this.#swapPositions = newPositions;
-    } else {
-      console.error('Invalid input for swapPositions. Expecting an array of integers.');
-    }
-  }
-
-  /**
-   * Sets the correct positions.
-   * @param {number[]} newPositions - The new correct positions to set.
-   * @public
-   */
-  static set correctPositions(newPositions) {
-    if (this.#isValidIntArray(newPositions)) {
-      this.#correctPositions = newPositions;
-    } else {
-      console.error('Invalid input for correctPositions. Expecting an array of integers.');
-    }
-  }
-  
-  static #isValidIntArray(input) {
-    if (!Array.isArray(input)) {
-      return false;
-    }
-    for (const value of input) {
-      if (!Number.isInteger(value)) {
-        return false;
-      }
-    }
-  
-    return true;
   }
 }

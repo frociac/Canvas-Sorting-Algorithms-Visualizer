@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // update the value display when the slider value changes
   slider.addEventListener("input", () => {
     valueDisplay.textContent = slider.value;
-    CanvasManager.stepSpeed = slider.value;
+    Options.step_speed = slider.value;
   });
   /** end of slider handler */
 
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
   controlButton.addEventListener("click", (event) => {
     if (Options.has_started) {
       Options.has_started = false;
-      ArrayData.clearAll();
+      CanvasManager.setUpCanvas();
       // CanvasManager.stop();
       controlButton.classList.add("clicked");
       controlButton.textContent = "Start Sort";
@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let childButton = buttonContainer.children[i];
         childButton.classList.add("disabled");
       }
-      Utils.startSort();
+      Algorithms.startSort();
     };
   })
   pauseButton.addEventListener("click", (event) => {

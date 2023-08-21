@@ -10,6 +10,8 @@ This website employs JavaScript canvas to provide a display of some of the most 
   - In the sorting process, comparisons with other elements are important to determine the correct arrangement of items.
 - **Blue:** Elements to be Swapped
   - Often in sorting algorithms, we want to rearrange elements into a more desierable position. Blue indicates elements that are currently being moved or swapped.
+- **Red:** Subarray
+  - In certain sorting algorithms, a portion of the original array is selected for closer examination. The red color represents elements within this chosen subarray, which are being evaluated and potentially rearranged to achieve proper sorting.
 - **Green:** Sorted Elements
   - Many sorting algorithms optimize their efficiency by placing elements in their appropriate positions early on. Various strategies exist to achieve this. Once an element is placed correctly, it turns green and is never compared again.
  
@@ -17,7 +19,7 @@ This website employs JavaScript canvas to provide a display of some of the most 
 - [x] Selection Sort
 - [x] Bubble Sort
 - [x] Insertion Sort
-- [ ] Merge Sort
+- [x] Merge Sort
 - [ ] Quick Sort
 - [ ] Heap Sort
 - [ ] Shell Sort
