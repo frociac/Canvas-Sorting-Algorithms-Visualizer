@@ -45,10 +45,10 @@ class ArrayData {
   static set array(newArray) {
     if (typeof newArray === 'string') {
       if (this.#verifyArrayInput(newArray)) {
-        this.#array = newArray.split(" ").map(Number);
+        this.#array = Utils.normalizeArrayToCanvas(newArray.split(" ").map(Number));
         this.#arraySize = this.#array.length;
       } else {
-        this.#array = Utils.generateRandomArray(Options.user_array_size);
+        this.#array = Utils.normalizeArrayToCanvas(Utils.generateRandomArray(Options.user_array_size));
         this.#arraySize = Options.user_array_size;
       }
     } else {

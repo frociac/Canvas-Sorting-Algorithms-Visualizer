@@ -93,6 +93,33 @@ static startSort() {
     return array;
   }
 
+/**
+ * Normalizes the array elements to fit within the canvas height.
+ * @param {number[]} arr - The array of numbers to normalize.
+ * @returns {number[]} The normalized array.
+ * @public
+ */
+static normalizeArrayToCanvas(arr) {
+  // Calculate the scaling factor based on the canvas height and the largest value in the array.
+  const scale = CanvasManager.height / this.#findLargestNumber(arr);
+  // returns a new array with normalized values using the calculated scale.
+  return arr.map(element => element * scale);
+}
+
+/**
+ * Finds the largest number in the array.
+ * @param {number[]} arr - The array of numbers to search.
+ * @returns {number} The largest number in the array.
+ * @private
+ */
+static #findLargestNumber(arr) {
+  let largest = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] > largest) largest = arr[i];
+  }
+  return largest;
+}
+
   /**
    * Swaps two elements in the array and updates swap points.
    * @param {number} i1 - The index of the first element.

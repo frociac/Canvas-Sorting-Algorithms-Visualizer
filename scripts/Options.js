@@ -8,6 +8,7 @@ class Options {
   static has_started = false;
   static is_randomly_generated = false;
   static is_paused = false;
+  static normalize_array = false;
 
   /**
    * Sets the user-defined array size.
