@@ -119,6 +119,19 @@ body {
   pointer-events: none;
 }
 
+.WIP {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.WIP.choice-button {
+  background-color: var(--disabledRed);
+}
+
+.WIP#random {
+  background-color: var(--disabledPurple);
+}
+
 .disabled.choice-button {
   background-color: var(--disabledRed);
 }
